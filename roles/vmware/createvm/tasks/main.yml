@@ -1,0 +1,45 @@
+- name: Check for required variables
+  fail:
+      msg: "Must set VM name!"
+  when: VMName is not defined
+
+- name: Check for vSphere access parameters
+  fail:
+      msg: "Must set VCenterUser and VCenterPass in a Vault"
+  when: (VCenterUsername is not defined) or (VCenterPassword is not defined)
+
+- name: Create VM from template
+  vmware_guest:
+      validate_certs: False
+      hostname: "{{ VCenterHostname }}"
+      username: "{{ VCenterUsername }}"
+      password: "{{ VCenterPassword }}"
+      datacenter: "{{ Datacenter }}"
+      cluster: "{{ Cluster }}"
+      resource_pool: "{{ ResourcePool }}"
+      name: "{{ VMName }}"
+      guest_id: "{{ GuestID }}"
+      folder: "{{ VMFolder }}"
+      template: "{{ VMTemplate }}"
+      disk: "{{ HDDList }}"
+      networks:
+          - name: "{{ Vlan }}"
+            ip: "{{ IPAddress }}"
+            netmask: "{{ Netmask }}"
+            gateway: "{{ Gateway }}"
+            device_type: "vmxnet3"
+      hardware:
+          memory_mb: "{{ RAMSize }}"
+          num_cups: "{{ CPU }}"
+      customization:
+          domain: "{{ Domain }}"
+          hostname: "{{ Hostname }}"
+          dns_servers: "{{ DNSServers }}"
+      wait_for_ip_address: True
+      state: present
+  register: newvm
+
+- name: IP address info
+  debug:
+      msg: "{{ newvm.instance.ipv4 }} {{ VMName }}"
+  ignore_errors: yes

@@ -1,0 +1,13 @@
+---
+VMName: "{{ Hostname }}.{{ Domain }}"
+Domain: "example.com"
+Hostname: "test01"
+VMFolder: "/test"
+Datastore: "com-nas01"
+
+# Network
+IPAddress: "10.10.10.10"
+Vlan: "dmz509"
+Gateway: "10.10.10.1"
+DNSServers:
+    - "8.8.8.8"

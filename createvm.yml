@@ -1,0 +1,18 @@
+---
+- name: Create VM
+  hosts: test
+  remote_user: root
+  connection: local
+
+  vars_files:
+    - cloud_login.yml
+
+  roles:
+    - common/vmware/createvm
+
+- name: Install enviroment for new VM
+  hosts: test
+  remote_user: root
+
+  roles:
+    - common/common

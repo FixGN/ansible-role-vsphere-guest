@@ -1,0 +1,11 @@
+---
+- name: Remove VM
+  hosts: test
+  remote_user: root
+  connection: local
+
+  vars_files:
+      - cloud_login.yml
+
+  roles:
+    - common/vmware/removevm

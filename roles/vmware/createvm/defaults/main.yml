@@ -1,0 +1,32 @@
+---
+# Connecting settings
+VCenterHostname: "cloud.example.com"
+VCenterUsername: "test_username"
+VCenterPassword: "test_password"
+
+# VM settings
+Datacenter: "COM"
+Cluster: "HA01"
+ResourcePool: "TEST"
+VMName: "test_vm"
+Domain: "example.com"
+Hostname: "test_vm"
+GuestID: "rhel7_64Guest"
+VMFolder: "/Test"
+VMTemplate: "TemplateCentOS7"
+Datastore: "com-nas01"
+
+# Hardware settings
+HDDList:
+    - { size_gb: "18", type: "thin", datastore: "{{ Datastore }}" }
+RAMSize: 4096       #In MB
+CPU: 4
+
+# Network settings
+Vlan: "dmz209"
+IPAddress: "192.168.1.2"
+Netmask: "255.255.255.0"
+Gateway: "192.168.1.1"
+DNSServers:
+    - "192.168.1.1"
+    - "8.8.8.8"

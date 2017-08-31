@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Chernyaev Y Alexey <cherniaev_a@tass.ru>
+  description: Create new VM from Template
+  company: TASS
+  min_ansible_version: 2.2
+  #
+  platforms:
+  - name: EL
+    versions:
+    - 7
+  categories:
+  - common/createvm
+#dependencies:

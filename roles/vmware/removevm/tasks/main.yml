@@ -1,0 +1,31 @@
+- name: Check for required variables
+  fail:
+      msg: "Must set VM name!"
+  when: VMName is not defined
+
+- name: Check for vSphere access parameters
+  fail:
+      msg: "Must set VCenterUser and VCenterPass in a Vault"
+  when: (VCenterUsername is not defined) or (VCenterPassword is not defined)
+
+- name: Powered off VM from template
+  vmware_guest:
+      validate_certs: False
+      hostname: "{{ VCenterHostname }}"
+      username: "{{ VCenterUsername }}"
+      password: "{{ VCenterPassword }}"
+      datacenter: "{{ Datacenter }}"
+      name: "{{ VMName }}"
+      folder: "{{ VMFolder }}"
+      state: poweredoff
+
+- name: Remove VM from template
+  vmware_guest:
+      validate_certs: False
+      hostname: "{{ VCenterHostname }}"
+      username: "{{ VCenterUsername }}"
+      password: "{{ VCenterPassword }}"
+      datacenter: "{{ Datacenter }}"
+      name: "{{ VMName }}"
+      folder: "{{ VMFolder }}"
+      state: absent

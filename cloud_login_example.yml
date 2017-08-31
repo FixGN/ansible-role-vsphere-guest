@@ -1,0 +1,6 @@
+---
+# It's example file with login and password for VSphere
+# Add into file your login and password. After what change name file to cloud_login.yml (without "_example")
+
+VCenterUsername: "example@example.org"
+VCenterPassword: "P455w0rD"

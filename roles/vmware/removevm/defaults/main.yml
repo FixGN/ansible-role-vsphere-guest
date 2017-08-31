@@ -1,0 +1,10 @@
+---
+# Connecting settings
+VCenterHostname: "cloud.tass.ru"
+VCenterUsername: "test_username"
+VCenterPassword: "test_password"
+
+# VM settings
+Datacenter: "MSK"
+VMName: "test_vm"
+VMFolder: "/ID/Test"
